@@ -6,6 +6,9 @@
     const dotsContainer = document.querySelector(".carousel-dots");
     const prevQuote = document.querySelector(".carousel-prev");
     const nextQuote = document.querySelector(".carousel-next");
+    const scrollTopButton = document.querySelector(".scroll-top");
+    const treatmentToggles = document.querySelectorAll(".treatment-toggle");
+    const productToggles = document.querySelectorAll(".product-toggle");
     let currentQuote = 0;
 
     function activateTab(tabName) {
@@ -62,5 +65,33 @@
 
       window.setInterval(() => {
         showQuote(currentQuote + 1);
-      }, 6500);
+      }, 11000);
     }
+
+    if (scrollTopButton) {
+      window.addEventListener("scroll", () => {
+        scrollTopButton.classList.toggle("visible", window.scrollY > 520);
+      });
+
+      scrollTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    treatmentToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const card = toggle.closest(".treatment-card");
+        const isOpen = card.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.querySelector(".toggle-icon").textContent = isOpen ? "−" : "+";
+      });
+    });
+
+    productToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const card = toggle.closest(".product-card");
+        const isOpen = card.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.querySelector(".toggle-icon").textContent = isOpen ? "−" : "+";
+      });
+    });
