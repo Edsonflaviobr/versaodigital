@@ -9,6 +9,8 @@
     const scrollTopButton = document.querySelector(".scroll-top");
     const treatmentToggles = document.querySelectorAll(".treatment-toggle");
     const productToggles = document.querySelectorAll(".product-toggle");
+    const topbar = document.querySelector(".topbar");
+    const navToggle = document.querySelector(".nav-toggle");
     let currentQuote = 0;
 
     function activateTab(tabName) {
@@ -28,7 +30,11 @@
     }
 
     buttons.forEach((button) => {
-      button.addEventListener("click", () => activateTab(button.dataset.tab));
+      button.addEventListener("click", () => {
+        activateTab(button.dataset.tab);
+        topbar?.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      });
     });
 
     tabLinks.forEach((link) => {
@@ -83,7 +89,7 @@
         const card = toggle.closest(".treatment-card");
         const isOpen = card.classList.toggle("open");
         toggle.setAttribute("aria-expanded", String(isOpen));
-        toggle.querySelector(".toggle-icon").textContent = isOpen ? "−" : "+";
+        toggle.querySelector(".toggle-icon").textContent = isOpen ? "-" : "+";
       });
     });
 
@@ -92,6 +98,11 @@
         const card = toggle.closest(".product-card");
         const isOpen = card.classList.toggle("open");
         toggle.setAttribute("aria-expanded", String(isOpen));
-        toggle.querySelector(".toggle-icon").textContent = isOpen ? "−" : "+";
+        toggle.querySelector(".toggle-icon").textContent = isOpen ? "-" : "+";
       });
+    });
+
+    navToggle?.addEventListener("click", () => {
+      const isOpen = topbar.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
     });

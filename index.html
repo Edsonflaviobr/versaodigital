@@ -14,7 +14,11 @@
         <img src="img/manejador.jpg" alt="Marca ManejaDor">
         <span>e-ManejaDor<small>Guia digital</small></span>
       </a>
-      <nav class="nav" aria-label="Navegação principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span>Menu</span>
+        <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+      </button>
+      <nav class="nav" id="main-nav" aria-label="Navegação principal">
         <button type="button" class="tab-button" data-tab="produto" aria-selected="true">Produto</button>
         <button type="button" class="tab-button" data-tab="capitulos" aria-selected="false">Capítulos</button>
         <button type="button" class="tab-button" data-tab="avaliacao" aria-selected="false">Avaliação</button>
