@@ -695,7 +695,7 @@
       margin-top: 34px;
       padding-top: 28px;
       border-top: 1px solid var(--linha);
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
 
     .product-grid {
@@ -772,10 +772,18 @@
       color: var(--branco);
     }
 
-    .product-content p,
     .treatment-content p {
       padding-top: 16px;
       border-top: 1px solid var(--linha);
+    }
+
+    .product-content p:first-child {
+      padding-top: 16px;
+      border-top: 1px solid var(--linha);
+    }
+
+    .product-content p + p {
+      margin-top: 10px;
     }
 
     .license {
