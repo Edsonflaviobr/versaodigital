@@ -795,18 +795,20 @@
     }
 
     .bibliography-card {
-      margin-top: 22px;
+      margin-top: 30px;
     }
 
     .bibliography-list {
       max-height: 430px;
-      overflow: auto;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       margin: 14px 0 0;
       padding-left: 24px;
       padding-right: 8px;
       color: #4f6066;
       font-size: 0.88rem;
       line-height: 1.45;
+      -webkit-overflow-scrolling: touch;
     }
 
     .bibliography-list li {
@@ -868,6 +870,7 @@
     @media (max-width: 900px) {
       .split {
         grid-template-columns: 1fr;
+        gap: 22px;
       }
 
       .hero-inner {
@@ -884,6 +887,14 @@
 
       .section-head {
         display: block;
+      }
+
+      .bibliography-card {
+        margin-top: 34px;
+      }
+
+      .bibliography-list {
+        max-height: 360px;
       }
     }
 
@@ -979,5 +990,16 @@
         bottom: 16px;
         width: 44px;
         height: 44px;
+      }
+
+      .bibliography-card {
+        margin-top: 36px;
+      }
+
+      .bibliography-list {
+        max-height: 320px;
+        padding-left: 20px;
+        padding-right: 10px;
+        font-size: 0.84rem;
       }
     }
