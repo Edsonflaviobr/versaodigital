@@ -794,6 +794,31 @@
       color: rgba(255, 255, 255, 0.86);
     }
 
+    .bibliography-card {
+      margin-top: 22px;
+    }
+
+    .bibliography-list {
+      max-height: 430px;
+      overflow: auto;
+      margin: 14px 0 0;
+      padding-left: 24px;
+      padding-right: 8px;
+      color: #4f6066;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .bibliography-list li {
+      padding-left: 4px;
+      margin-bottom: 10px;
+    }
+
+    .bibliography-list li::marker {
+      color: var(--azul);
+      font-weight: 800;
+    }
+
     footer {
       background: #0d2c36;
       color: rgba(255, 255, 255, 0.78);
