@@ -122,7 +122,21 @@
         return;
       }
 
-      window.alert("Para instalar o e-ManejaDor, abra esta página pelo navegador e use a opção 'Instalar app' ou 'Adicionar à tela inicial'.");
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isAndroid = /android/i.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (isIOS && isSafari) {
+        window.alert("No iPhone: toque no botão Compartilhar do Safari e escolha 'Adicionar à Tela de Início'. Depois confirme em 'Adicionar' para instalar o e-ManejaDor.");
+        return;
+      }
+
+      if (isAndroid) {
+        window.alert("No Android: toque no menu do navegador e escolha 'Instalar app' ou 'Adicionar à tela inicial'. Se aparecer uma janela de instalação, confirme para instalar o e-ManejaDor.");
+        return;
+      }
+
+      window.alert("Para instalar o e-ManejaDor, use a opção 'Instalar app' ou 'Adicionar à tela inicial' no menu do navegador.");
     });
 
     window.addEventListener("appinstalled", () => {
