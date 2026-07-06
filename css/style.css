@@ -233,6 +233,16 @@
       border-color: var(--linha);
     }
 
+    .button.install-app {
+      background: var(--amarelo);
+      color: #2e2414;
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .button.install-app:hover {
+      background: #e5ae45;
+    }
+
     .button.disabled {
       background: #e6eceb;
       color: #6a777b;

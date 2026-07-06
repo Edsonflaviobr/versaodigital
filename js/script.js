@@ -11,7 +11,9 @@
     const productToggles = document.querySelectorAll(".product-toggle");
     const topbar = document.querySelector(".topbar");
     const navToggle = document.querySelector(".nav-toggle");
+    const installAppButton = document.querySelector(".install-app");
     let currentQuote = 0;
+    let deferredInstallPrompt = null;
 
     function activateTab(tabName) {
       buttons.forEach((button) => {
@@ -106,3 +108,31 @@
       const isOpen = topbar.classList.toggle("nav-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
     });
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+    });
+
+    installAppButton?.addEventListener("click", async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        return;
+      }
+
+      window.alert("Para instalar o e-ManejaDor, abra esta página pelo navegador e use a opção 'Instalar app' ou 'Adicionar à tela inicial'.");
+    });
+
+    window.addEventListener("appinstalled", () => {
+      deferredInstallPrompt = null;
+      installAppButton?.classList.add("disabled");
+      installAppButton?.setAttribute("aria-disabled", "true");
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
