@@ -15,6 +15,14 @@
     let currentQuote = 0;
     let deferredInstallPrompt = null;
 
+    const isStandaloneApp = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+
+    if (isStandaloneApp && installAppButton) {
+      installAppButton.textContent = "APP instalado";
+      installAppButton.classList.add("disabled");
+      installAppButton.setAttribute("aria-disabled", "true");
+    }
+
     function activateTab(tabName) {
       buttons.forEach((button) => {
         const isActive = button.dataset.tab === tabName;
@@ -112,9 +120,17 @@
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       deferredInstallPrompt = event;
+      installAppButton?.classList.remove("disabled");
+      installAppButton?.removeAttribute("aria-disabled");
     });
 
     installAppButton?.addEventListener("click", async () => {
+      if (installAppButton.getAttribute("aria-disabled") === "true") return;
+
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isAndroid = /android/i.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
       if (deferredInstallPrompt) {
         deferredInstallPrompt.prompt();
         await deferredInstallPrompt.userChoice;
@@ -122,17 +138,13 @@
         return;
       }
 
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isAndroid = /android/i.test(navigator.userAgent);
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
       if (isIOS && isSafari) {
         window.alert("No iPhone: toque no botão Compartilhar do Safari e escolha 'Adicionar à Tela de Início'. Depois confirme em 'Adicionar' para instalar o e-ManejaDor.");
         return;
       }
 
       if (isAndroid) {
-        window.alert("No Android: toque no menu do navegador e escolha 'Instalar app' ou 'Adicionar à tela inicial'. Se aparecer uma janela de instalação, confirme para instalar o e-ManejaDor.");
+        window.alert("No Android: este botão tenta abrir a instalação automática quando o Chrome ou Edge libera o recurso. Se não apareceu a janela de instalação, toque no menu do navegador e escolha 'Instalar app' ou 'Adicionar à tela inicial'.");
         return;
       }
 
