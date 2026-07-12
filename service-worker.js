@@ -1,4 +1,4 @@
-const CACHE_NAME = "e-manejador-v1";
+const CACHE_NAME = "e-manejador-v9";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,6 +6,8 @@ const APP_SHELL = [
   "./js/script.js",
   "./manifest.webmanifest",
   "./img/manejador.jpg",
+  "./img/eu.png",
+  "./img/belinha.png",
   "./img/icon-192.png",
   "./img/icon-512.png"
 ];

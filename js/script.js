@@ -157,6 +157,25 @@
       installAppButton?.setAttribute("aria-disabled", "true");
     });
 
+    const scaleInfoButtons = document.querySelectorAll(".scale-info");
+    const scaleDialogs = document.querySelectorAll(".scale-dialog");
+
+    scaleInfoButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const dialog = document.getElementById(button.dataset.dialog);
+        dialog?.showModal();
+      });
+    });
+
+    scaleDialogs.forEach((dialog) => {
+      dialog.querySelector(".scale-dialog-close")?.addEventListener("click", () => dialog.close());
+
+      dialog.addEventListener("click", (event) => {
+        const bounds = dialog.getBoundingClientRect();
+        const clickedOutside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+        if (clickedOutside) dialog.close();
+      });
+    });
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js").catch(() => {});
