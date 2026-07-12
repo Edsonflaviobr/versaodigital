@@ -1119,6 +1119,19 @@
         grid-template-columns: 1fr;
       }
 
+      .author-profile {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .author-photo {
+        margin: 0 auto;
+      }
+
+      .author-info h4 {
+        text-align: center;
+      }
+
       .chapter {
         grid-template-columns: 1fr;
       }
