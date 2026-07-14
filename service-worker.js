@@ -1,4 +1,4 @@
-const CACHE_NAME = "e-manejador-v12";
+const CACHE_NAME = "e-manejador-v13";
 const APP_SHELL = [
   "./",
   "./index.html",
